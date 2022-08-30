@@ -11,22 +11,6 @@ from py_adyen_encrypt import encryptor
 import urllib
 
 
-def adyen_enc(cc, mes, ano, cvv, ADYEN_KEY, adyen_version):
-    enc = encryptor(ADYEN_KEY)
-    enc.adyen_version = adyen_version
-    enc.adyen_public_key = ADYEN_KEY
-
-    card = enc.encrypt_card(card=cc, cvv=cvv, month=mes, year=ano)
-    month = card['month']
-    year = card['year']
-    cvv = card['cvv']
-    card = card['card']
-
-    card = urllib.parse.quote_plus(card)
-    Month = urllib.parse.quote_plus(month)
-    Year = urllib.parse.quote_plus(year)
-    cvv = urllib.parse.quote_plus(cvv)
-    return card, Month, Year,cvv
 
 
 app = FastAPI(debug=True, 
@@ -91,13 +75,4 @@ class Item(BaseModel):
     adyen_key: str
 
 
-@app.post("/adyen/")
-async def adyen(item: Item):
-    cc, mes, ano, cvv = adyen_enc(
-        item.card, item.month, item.year, item.cvv, item.adyen_key, item.adyen_version)
-    return {
-        'card': cc,
-        'month': mes,
-        'year': ano,
-        'cvv': cvv
-    }
+
