@@ -14,9 +14,9 @@ import urllib
 
 
 app = FastAPI(debug=True, 
-              title="Bin lookup And Adyen Generator Ny Roldexverse.", 
+              title="Bin lookup", 
               redoc_url=None,
-              description=" Feel free to use. made by @roldexverse for roldexverse subscribers.")
+              description=" Feel free to use")
 
 
 
@@ -63,16 +63,10 @@ async def bin(bin1):
 
 @app.get("/")
 async def start():
-    return RedirectResponse("http://www.github.com/r0ld3x/adyen-enc-and-bin-info")
+    return RedirectResponse("http://www.github.com/iamaamirkhan/bin-info")
 
 
-class Item(BaseModel):
-    card: str
-    month: str
-    year: str
-    cvv: str
-    adyen_version: str
-    adyen_key: str
+
 
 
 
