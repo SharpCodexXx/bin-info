@@ -63,7 +63,7 @@ async def bin(bin1):
 
 @app.get("/")
 async def start():
-    return RedirectResponse("http://www.github.com/iamaamirkhan/bin-info")
+    return RedirectResponse("https://github.com/SharpCodexXx/bin-info")
 
 
 
